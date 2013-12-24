@@ -16,24 +16,45 @@ block content
 
     #examples
       #connected
-        h2 Connected lists with drop animation
+        .content
+          br
+          a.profile-photo(href='#')
+            img(src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c5.5.65.65/s64x64/532673_3872037235108_1193466351_t.jpg')
+          strong John Doe
+          hr
         .row
           .col-xs-6.col-md-4
-            ol.simple_with_animation.vertical
-              li Item 1
-              li Item 3
-              li.highlight Item 2
-              li. Item 2
-              li Item 4
-              li Item 5
-              li Item 6
+            .task_list
+              h4 Drag and drop to re-arrange tasks:
+              ol.simple_with_animation.vertical
+                li Complete/partial bath
+                li Dress/undress
+                li Assist with toileting
+                li Transferring
+                li Personal grooming
+                li Assist with eating/feeding
+                li Ambulation
+                li Turn/Change position
+                li Vital Signs
+                li Assist with self-administration medication
+                li Bowel/bladder
+                li Wound care
+                li ROM
+                li Supervision
+                li Prepare breakfast
+                li Prepare lunch
+                li Prepare dinner
+                li Clean kitchen/wash dishes
+                li Make/change bed linen
+                li Clean areas used by individual
+                li Listing supplies/shopping
           .col-xs-6.col-md-4
-            ol.simple_with_animation.vertical
-              li.highlight Item 1
-              li.highlight Item 3
-              li.highlight Item 4
-              li.highlight Item 5
-              li.highlight Item 6
+            .task_list
+              h4 Un-assigned tasks:
+              ol.simple_with_animation.vertical
+                li Individual's laundry
+                li Medical appointments
+                li Work/school/social
 
     //
        Site footer 
