@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  .container
+    .masthead
+      h3.text-muted Welcome to Clear Care
+      ul.nav.nav-justified
+        li.active
+          a(href='#') Admin
+        li
+          a(href='#') Report
+        li
+          a(href='#') About
+        li
+          a(href='#') Contact
+
+    #examples
+      #connected
+        h2 Connected lists with drop animation
+        .row
+          .col-xs-6.col-md-4
+            ol.simple_with_animation.vertical
+              li Item 1
+              li Item 3
+              li.highlight Item 2
+              li. Item 2
+              li Item 4
+              li Item 5
+              li Item 6
+          .col-xs-6.col-md-4
+            ol.simple_with_animation.vertical
+              li.highlight Item 1
+              li.highlight Item 3
+              li.highlight Item 4
+              li.highlight Item 5
+              li.highlight Item 6
+
+    //
+       Site footer 
+    .footer
+      p © Company 2013
+  //
+     /container 
+  //
+     Bootstrap core JavaScript
+        ================================================== 
+  //
+     Placed at the end of the document so the pages load faster 
+
