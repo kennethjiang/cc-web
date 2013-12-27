@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  .container
+    .masthead
+      h3.text-muted Welcome to Clear Care
+      ul.nav.nav-justified
+        li
+          a(href='/') Admin
+        li.active
+          a(href='/patients') Dashboard
+        li
+          a(href='#') About
+        li
+          a(href='#') Contact
+
+
+     .content
+       br
+       a.profile-photo(href='#')
+         img(height=42 width=42 src='/images/profile.jpg')
+       strong John Doe
+       hr
+     table.table.table-striped
+      thead
+        tr
+          th Time
+          th Task
+          th Status
+          th Comments
+      tbody
+        - each task in tasks
+          tr
+            td= task.time
+            td= task.task
+            if task.status == "Confirmed" || task.status == "No"
+              td.positive= task.status
+            else
+              td.negative= task.status
+            td= task.comments
+
+    //
+       Site footer 
+    .footer
+      p © Company 2013
+  //
+     /container 
+  //
+     Bootstrap core JavaScript
+        ================================================== 
+  //
+     Placed at the end of the document so the pages load faster 
+
