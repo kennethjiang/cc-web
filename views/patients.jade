@@ -1,0 +1,82 @@
+extends layout
+
+block content
+  .container
+    .masthead
+      h3.text-muted Welcome to Clear Care
+      ul.nav.nav-justified
+        li
+          a(href='/') Admin
+        li.active
+          a(href='/patients') Dashboard
+        li
+          a(href='#') About
+        li
+          a(href='#') Contact
+
+    h3 Viewing all patients
+    hr
+
+    table.table.table-striped
+      thead
+          tr
+            th &nbsp;
+            th Patient
+            th Caregiver
+            th Report
+      tbody
+          tr
+            td
+              img(height=25 width=25 src='/images/profile.jpg')
+            td John Doe
+            td Mary King
+            td
+              a(href="/patients/12") 18 Tasks completed, 2 rejected. @4:15pm today
+          tr
+            td
+              img(height=25 width=25 src='/images/profile.jpg')
+            td Marcel Jorna
+            td Hamed Javadi
+            td
+              a(href="/patients/12") 22 Tasks completed. @10:30am today
+          tr
+            td
+              img(height=25 width=25 src='/images/profile.jpg')
+            td Jenny Chen
+            td Derrick M Chan
+            td
+              a(href="/patients/12") 19 Tasks completed, 4 rejected. @8:30pm today
+          tr
+            td
+              img(height=25 width=25 src='/images/profile.jpg')
+            td  Michael Hack
+            td Kathy Noordeh
+            td
+              a(href="/patients/12") 25 Tasks completed. @3:24pm today
+          tr
+            td
+              img(height=25 width=25 src='/images/profile.jpg')
+            td Kevin R Barry
+            td Suburo Kami
+            td
+              a(href="/patients/12") 19 Tasks completed, 5 rejected. @8:55pm today
+          tr
+            td
+              img(height=25 width=25 src='/images/profile.jpg')
+            td Stephen Cohen
+            td Wong Wilson
+            td
+              a(href="/patients/12") 12 Tasks completed, 10 rejected. @5:47pm today
+
+    //
+       Site footer 
+    .footer
+      p © Company 2013
+  //
+     /container 
+  //
+     Bootstrap core JavaScript
+        ================================================== 
+  //
+     Placed at the end of the document so the pages load faster 
+

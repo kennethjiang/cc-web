@@ -300,3 +300,11 @@ ol.nav ol.dropdown-menu li.placeholder:before {
   margin: 5px;
   padding: 10px;
   min-height: 50px; }
+
+td.positive {
+  color: green;
+}
+
+td.negative {
+  color: red;
+}
