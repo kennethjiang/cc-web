@@ -29,6 +29,12 @@ block content
           th Status
           th Comments
       tbody
+        tr
+          td Dec 27 10:20
+          td
+            strong Checking in
+          td &nbsp;
+          td &nbsp;
         - each task in tasks
           tr
             td= task.time
@@ -38,6 +44,14 @@ block content
             else
               td.negative= task.status
             td= task.comments
+        tr
+          td Dec 27 16:15
+          td
+            strong Checking out 
+          td &nbsp;
+          td &nbsp;
+    hr
+    h3 Duration: 5 hours, 55 mins
 
     //
        Site footer 

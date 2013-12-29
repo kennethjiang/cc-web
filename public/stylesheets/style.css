@@ -308,3 +308,8 @@ td.positive {
 td.negative {
   color: red;
 }
+
+td.negative a {
+  color: red;
+  text-decoration: underline;
+}

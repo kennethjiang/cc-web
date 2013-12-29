@@ -23,7 +23,10 @@ block content
             th &nbsp;
             th Patient
             th Caregiver
-            th Report
+            th Tasks
+            th Alerts
+            th Time in/out
+            th Duration
       tbody
           tr
             td
@@ -31,42 +34,66 @@ block content
             td John Doe
             td Mary King
             td
-              a(href="/patients/12") 18 Tasks completed, 2 rejected. @4:15pm today
+              a(href="/patients/12") 18
+            td.negative
+              a(href="/patients/12") 3
+            td 10:20am/4:15pm, today
+            td 5 hours, 55 mins
           tr
             td
               img(height=25 width=25 src='/images/profile.jpg')
             td Marcel Jorna
             td Hamed Javadi
             td
-              a(href="/patients/12") 22 Tasks completed. @10:30am today
+              a(href="/patients/12") 22
+            td
+              a(href="/patients/12")  None
+            td 4:57pm/6:15pm, today
+            td 1 hours, 18 mins
           tr
             td
               img(height=25 width=25 src='/images/profile.jpg')
             td Jenny Chen
             td Derrick M Chan
             td
-              a(href="/patients/12") 19 Tasks completed, 4 rejected. @8:30pm today
+              a(href="/patients/12") 19
+            td.negative
+              a(href="/patients/12") 6
+            td 4:00pm/8:30pm, today
+            td 4 hours, 30 mins
           tr
             td
               img(height=25 width=25 src='/images/profile.jpg')
             td  Michael Hack
             td Kathy Noordeh
             td
-              a(href="/patients/12") 25 Tasks completed. @3:24pm today
+              a(href="/patients/12") 25
+            td
+              a(href="/patients/12") None
+            td 1:20pm/3:24pm, today
+            td 2 hours, 4 mins
           tr
             td
               img(height=25 width=25 src='/images/profile.jpg')
             td Kevin R Barry
             td Suburo Kami
             td
-              a(href="/patients/12") 19 Tasks completed, 5 rejected. @8:55pm today
+              a(href="/patients/12") 19
+            td.negative
+              a(href="/patients/12") 6
+            td 5:27pm/6:59pm, today
+            td 1 hour, 32 mins
           tr
             td
               img(height=25 width=25 src='/images/profile.jpg')
             td Stephen Cohen
             td Wong Wilson
             td
-              a(href="/patients/12") 12 Tasks completed, 10 rejected. @5:47pm today
+              a(href="/patients/12") 12
+            td.negative
+              a(href="/patients/12") 16
+            td 11:22pm/5:47pm, today
+            td 6 hours, 25 mins
 
     //
        Site footer 
