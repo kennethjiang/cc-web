@@ -185,7 +185,27 @@ ol {
     text-decoration: line-through; }
     /* line 39, application.css.sass */
     ol li.highlight i.icon-move {
-      background-image: url("../img/glyphicons-halflings-white.png"); }
+      background-image: url("../images/glyphicons-halflings-white.png"); }
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("../images/glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat; }
+  /* line 70, ../../vendor/ruby/1.8/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_mixins.scss */
+  [class^="icon-"]:last-child,
+  [class*=" icon-"]:last-child {
+    *margin-left: 0; }
+
+/* line 104, ../../vendor/ruby/1.8/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_sprites.scss */
+.icon-move {
+  background-position: -168px -72px; }
 
 /* line 42, application.css.sass */
 ol.nested_with_switch, ol.nested_with_switch ol {
@@ -194,9 +214,6 @@ ol.nested_with_switch, ol.nested_with_switch ol {
   ol.nested_with_switch.active, ol.nested_with_switch ol.active {
     border: 1px solid #333333; }
 
-/* line 48, application.css.sass */
-ol.nested_with_switch li, ol.simple_with_animation li, ol.default li {
-  cursor: pointer; }
 
 /* line 51, application.css.sass */
 .switch-container {
@@ -318,4 +335,7 @@ li button.attach-pic {
  float: right; 
 }
 
+li a.editable-title span {
+  margin-left: 10px;
+}
 .hidden { display: none; }
