@@ -34,5 +34,30 @@ $(function  () {
         top: position.top - adjustment.top
       })
     }
-  })
+  });
+
+
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        input_node = input;
+
+        reader.onload = function (e) {
+            $($(input_node).closest("li").find("form")).addClass("hidden");
+            $($(input_node).closest("li").find("div.pic-preview")).removeClass("hidden");
+            $($(input_node).closest("li").find("img")).attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$(".imgInp").change(function(){
+    readURL(this);
+});
+
+$(".attach-pic").click(function(){
+    $($(this).closest("li").find("form")).removeClass("hidden");
+});
 })
