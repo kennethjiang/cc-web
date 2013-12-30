@@ -313,3 +313,9 @@ td.negative a {
   color: red;
   text-decoration: underline;
 }
+
+li button.attach-pic {
+ float: right; 
+}
+
+.hidden { display: none; }
