@@ -3,7 +3,8 @@ $(function  () {
   
   $("ol.simple_with_animation").sortable({
     group: 'simple_with_animation',
-    pullPlaceholder: false,
+    handle: 'i.icon-move',
+    //pullPlaceholder: false,
     // animation on drop
     onDrop: function  (item, targetContainer, _super) {
       var clonedItem = $('<li/>').css({height: 0})
@@ -60,4 +61,9 @@ $(".imgInp").change(function(){
 $(".attach-pic").click(function(){
     $($(this).closest("li").find("form")).removeClass("hidden");
 });
+
+
+$('li a.editable-title').editable({
+                           type:  'text',
+                        });
 })
