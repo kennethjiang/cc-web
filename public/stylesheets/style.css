@@ -339,3 +339,8 @@ li a.editable-title span {
   margin-left: 10px;
 }
 .hidden { display: none; }
+
+#new-task-div .popover {
+  width: 450px;
+  max-width: 460px;
+}

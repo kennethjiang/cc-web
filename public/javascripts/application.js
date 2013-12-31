@@ -64,6 +64,33 @@ $(".attach-pic").click(function(){
 
 
 $('li a.editable-title').editable({
-                           type:  'text',
-                        });
+  type:  'text',
+});
+
+  $('a#new-task').click( function() {
+    $('#popover_content_wrapper').show(350);
+  });
+
+  $('button#new-task-submit').click( function() {
+    $('#popover_content_wrapper').hide(350);
+    var clone = $($('ol.task_group_in li')[0]).clone();
+    clone.find('span').text($(':input','.form-inline').not(':button, :submit, :reset, :hidden').val());
+    $('ol.task_group_in').prepend(clone);
+    $(':input','.form-inline')
+    .not(':button, :submit, :reset, :hidden')
+    .val('')
+    .removeAttr('checked')
+    .removeAttr('selected');
+  });
+
+  $('button#new-task-cancel').click( function() {
+    $('#popover_content_wrapper').hide(350);
+    $(':input','.form-inline')
+    .not(':button, :submit, :reset, :hidden')
+    .val('')
+    .removeAttr('checked')
+    .removeAttr('selected');
+  });
+
+    $('#popover_content_wrapper').hide();
 })

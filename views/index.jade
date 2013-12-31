@@ -22,11 +22,26 @@ block content
             img(height=42 width=42 src='/images/profile.jpg')
           strong John Doe
           hr
-        .row
+        #new-task-div.row
+          .col-xs-8.col-md-6
+            a#new-task.btn.btn-primary(type='button', href='#') Add Custom Task
+            p
+            #popover_content_wrapper
+              form.form-inline(role='form')
+                  .form-group
+                    input.form-control.input-sm(type='text', style='width: 420px;')
+                  .form-group
+                    button#new-task-submit.btn.btn-primary.btn-sm(type='submit')
+                      i.glyphicon.glyphicon-ok
+                    button#new-task-cancel.btn.btn-default.btn-sm(type='button')
+                      i.glyphicon.glyphicon-remove
+          
+         .row
           .col-xs-8.col-md-6
             .task_list
               h4 Drag and drop to re-arrange tasks:
-              ol.simple_with_animation.vertical
+              
+              ol.simple_with_animation.vertical.task_group_in
                 li
                   i.icon-move
                   a.editable-title(href='#')
@@ -218,7 +233,7 @@ block content
                     input.imgInp(type='file')
           .col-xs-8.col-md-6
             .task_list
-              h4 Un-assigned tasks:
+              h3 Un-assigned tasks:
               ol.simple_with_animation.vertical
                 li Individual's laundry
                   button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
