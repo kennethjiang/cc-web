@@ -1,0 +1,109 @@
+extends layout
+
+block content
+  .container
+    .masthead
+      h3.text-muted Welcome to Clear Care
+      ul.nav.nav-justified
+        li.active
+          a(href='/') Admin
+        li
+          a(href='/patients') Dashboard
+        li
+          a(href='#') About
+        li
+          a(href='#') Contact
+
+
+     .content
+       br
+       a.profile-photo(href='#')
+         img(height=42 width=42 src='/images/profile.jpg')
+       strong John Doe
+       hr
+     .filter_now
+       .row
+         .col-md-4
+           strong Intake date:&nbsp; &nbsp;
+           span.editable-date 1/1/2014
+         .col-md-4
+           strong Conditions:&nbsp; &nbsp;
+           span.editable-select Congestive Heart Failure
+       hr
+     .row
+       .col-md-4
+         .gridbox
+           header
+             strong Patient Contact
+           div
+             address
+               strong John Doe
+                 br
+                 span.editable-title 795 Folsom Ave, Suite 600
+                 br
+                 span.editable-title
+                   | San Francisco, CA 94107
+                 br
+                 abbr(title='Phone') Phone:&nbsp;
+                 span.editable-title
+                   | (123) 456-7890
+               address
+                 br
+                 span.editable-title
+                   | john.doe@example.com
+
+       .col-md-4
+         .gridbox
+           header
+             strong Midical Contact
+           div
+             address
+               strong
+                 span.editable-title Dan Kalshan, MD
+                 br
+                 span.editable-title 900 Hyde St
+                 br
+                 span.editable-title
+                   | San Francisco, CA 94109
+                 br
+                 abbr(title='Phone') Phone:&nbsp;
+                 span.editable-title
+                   | (415) 353-6000
+               address
+                 br
+                 span.editable-title
+                   | dank@awesomemedicalcare.com
+       .col-md-4
+         .gridbox
+           header
+             strong Family Contact
+           div
+             address
+               strong
+                 span.editable-title Catherine Doe
+                 br
+                 span.editable-title 795 Folsom Ave, Suite 600
+                 br
+                 span.editable-title
+                   | San Francisco, CA 94107
+                 br
+                 abbr(title='Phone') Phone:&nbsp;
+                 span.editable-title
+                   | (123) 456-7891
+               address
+                 br
+                 span.editable-title
+                   | catherine.doe@example.com
+
+    //
+       Site footer 
+    .footer
+      p © Company 2013
+  //
+     /container 
+  //
+     Bootstrap core JavaScript
+        ================================================== 
+  //
+     Placed at the end of the document so the pages load faster 
+
