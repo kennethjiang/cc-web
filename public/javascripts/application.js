@@ -38,34 +38,50 @@ $(function  () {
   });
 
 
-function readURL(input) {
+  function readURL(input) {
+  
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          input_node = input;
+  
+          reader.onload = function (e) {
+              $($(input_node).closest("li").find("form")).addClass("hidden");
+              $($(input_node).closest("li").find("div.pic-preview")).removeClass("hidden");
+              $($(input_node).closest("li").find("img")).attr('src', e.target.result);
+          }
+  
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  
+  $(".imgInp").change(function(){
+      readURL(this);
+  });
+  
+  $(".attach-pic").click(function(){
+      $($(this).closest("li").find("form")).removeClass("hidden");
+  });
+  
+  
+  $('.editable-title').editable({
+    type:  'text',
+  });
 
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        input_node = input;
+  $('.editable-date').editable({
+    type:  'date',
+    placement: 'right',
+  });
 
-        reader.onload = function (e) {
-            $($(input_node).closest("li").find("form")).addClass("hidden");
-            $($(input_node).closest("li").find("div.pic-preview")).removeClass("hidden");
-            $($(input_node).closest("li").find("img")).attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$(".imgInp").change(function(){
-    readURL(this);
-});
-
-$(".attach-pic").click(function(){
-    $($(this).closest("li").find("form")).removeClass("hidden");
-});
-
-
-$('li a.editable-title').editable({
-  type:  'text',
-});
+  $('.editable-select').editable({
+    type:  'select',
+    value: 1,    
+    source: [
+              {value: 1, text: 'Congestive Heart Failure'},
+              {value: 2, text: 'COPD'},
+              {value: 3, text: 'Dimensia'}
+           ],
+    placement: 'right',
+  });
 
   $('a#new-task').click( function() {
     $('#popover_content_wrapper').show(350);

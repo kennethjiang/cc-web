@@ -34,7 +34,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+//app.get('/users', user.list);
+app.get('/users/:id', user.show);
 app.get('/patients', patient.list);
 app.get('/patients/:id', patient.show);
 
