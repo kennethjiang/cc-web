@@ -214,19 +214,25 @@ block content
             .task_list
               h3 Un-assigned tasks:
               ol.simple_with_animation.vertical
-                li Individual's laundry
+                li
+                  i.icon-move
+                  span.editable-title Individual's laundry
                   button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
                   div.pic-preview.hidden
                     img(src='#', alt='your image', style='width: 50px')
                   form.hidden(runat='server')
                     input.imgInp(type='file')
-                li Medical appointments
+                li
+                  i.icon-move
+                  span.editable-title Medical appointments
                   button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
                   div.pic-preview.hidden
                     img(src='#', alt='your image', style='width: 50px')
                   form.hidden(runat='server')
                     input.imgInp(type='file')
-                li Work/school/social
+                li
+                  i.icon-move
+                  span.editable-title Work/school/social
                   button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
                   div.pic-preview.hidden
                     img(src='#', alt='your image', style='width: 50px')
