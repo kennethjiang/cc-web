@@ -27,11 +27,11 @@ block content
             a#new-task.btn.btn-primary(type='button', href='#') Add Custom Task
             p
             #popover_content_wrapper
-              form.form-inline(role='form')
+              form#new-task-form.form-inline(role='form')
                   .form-group
                     input.form-control.input-sm(type='text', style='width: 420px;')
                   .form-group
-                    button#new-task-submit.btn.btn-primary.btn-sm(type='submit')
+                    button#new-task-submit.btn.btn-primary.btn-sm(type='button')
                       i.glyphicon.glyphicon-ok
                     button#new-task-cancel.btn.btn-default.btn-sm(type='button')
                       i.glyphicon.glyphicon-remove

@@ -88,15 +88,21 @@ $(function  () {
   });
 
   $('button#new-task-submit').click( function() {
+    var taskDesc = $(':input','.form-inline').not(':button, :submit, :reset, :hidden').val(); 
+
     $('#popover_content_wrapper').hide(350);
-    var clone = $($('ol.task_group_in li')[0]).clone();
-    clone.find('span').text($(':input','.form-inline').not(':button, :submit, :reset, :hidden').val());
-    $('ol.task_group_in').prepend(clone);
     $(':input','.form-inline')
     .not(':button, :submit, :reset, :hidden')
     .val('')
     .removeAttr('checked')
     .removeAttr('selected');
+
+    var TaskObject = Parse.Object.extend("Task");
+    var task = new TaskObject();
+    task.save({desc: taskDesc});
+    var clone = $($('ol.task_group_in li')[0]).clone();
+    clone.find('span').text(taskDesc);
+    $('ol.task_group_in').prepend(clone);
   });
 
   $('button#new-task-cancel').click( function() {
@@ -109,4 +115,56 @@ $(function  () {
   });
 
     $('#popover_content_wrapper').hide();
+
+  $('form#new-task-form').submit( function(event) {
+    return false;
+  });
+
+  Parse.initialize("qoaGnqvRsGAsQ4UiPbR2ExmB7HcqiGBAueYxQXND", "QvA1IsAoo7wAnMdTu9lgeoKB9X7PJTAGeexGXHWZ");
+
+
+  preCreateTasks = function() {
+    var TaskObject = Parse.Object.extend("Task");
+    var query = new Parse.Query(TaskObject);
+    query.find().then(function(tasks) {
+        _.each(tasks, function(task) {
+          task.destroy();
+         }); 
+      });
+    var predefined = [
+    {desc: "Complete/partial bath", isQuestion: "T"},
+    {desc: "Dress/undress", isQuestion: "T"},
+    {desc: "Assist with toileting", isQuestion: "T"},
+    {desc: "Transferring", isQuestion: "T"},
+    {desc: "Personal grooming", isQuestion: "T"},
+    {desc: "Assist with eating/feeding", isQuestion: "T"},
+    {desc: "Ambulation", isQuestion: "T"},
+    {desc: "Turn/Change position", isQuestion: "T"},
+    {desc: "Vital Signs", isQuestion: "T"},
+    {desc: "Assist with self-administration medication", isQuestion: "T"},
+    {desc: "Bowel/bladder", isQuestion: "T"},
+    {desc: "Wound care", isQuestion: "T"},
+    {desc: "ROM", isQuestion: "T"},
+    {desc: "Supervision", isQuestion: "T"},
+    {desc: "Prepare breakfast", isQuestion: "T"},
+    {desc: "Prepare lunch", isQuestion: "T"},
+    {desc: "Prepare dinner", isQuestion: "T"},
+    {desc: "Clean kitchen/wash dishes", isQuestion: "T"},
+    {desc: "Make/change bed linen", isQuestion: "T"},
+    {desc: "Clean areas used by individual", isQuestion: "T"},
+    {desc: "Listing supplies/shopping", isQuestion: "T"},
+    {desc: "Individual's laundry", isQuestion: "T"},
+    {desc: "Medical appointments", isQuestion: "T"},
+    {desc: "Work/school/social", isQuestion: "T"},
+    {desc: "Did you observe any change in the individual's physical condition?", isQuestion: "T"},
+    {desc: "Did you observe any change in the individual's emotional condition?", isQuestion: "T"},
+    {desc: "Was there any change in the individual's regular daily activities?", isQuestion: "T"},
+    {desc: "Do you have an observation about the individual's response to services rendered?", isQuestion: "T"},
+    ];
+
+    _.each (predefined, function(taskitem) {
+      var task = new TaskObject();
+      task.save(taskitem);
+    });
+  };
 })
