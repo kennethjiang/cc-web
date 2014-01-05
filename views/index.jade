@@ -1,6 +1,14 @@
 extends layout
 
 block content
+  script#task_item_template(type='text/template')
+      <li data-task-id="<%= task.id %>"><i class="icon-move"></i><span data-type="text" class="editable-title"><%= task.get('desc') %></span>
+      <button type="button" class="attach-pic btn btn-primary btn-xs">Attach picture</button>
+      <div class="pic-preview hidden"><img src="#" alt="your image" style="width: 50px"></div>
+      <form runat="server" class="hidden">
+      <input type="file" class="imgInp">
+      </form>
+      </li>
   .container
     .masthead
       h3.text-muted Welcome to Clear Care
@@ -42,174 +50,6 @@ block content
               h4 Drag and drop to re-arrange tasks:
               
               ol.simple_with_animation.vertical.task_group_in
-                li
-                  i.icon-move
-                  span.editable-title Complete/partial bath
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Dress/undress
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Assist with toileting
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Transferring
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Personal grooming
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Assist with eating/feeding
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Ambulation
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Turn/Change position
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Vital Signs
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Assist with self-administration medication
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Bowel/bladder
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Wound care
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title ROM
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Supervision
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Prepare breakfast
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Prepare lunch
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Prepare dinner
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Clean kitchen/wash dishes
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Make/change bed linen
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Clean areas used by individual
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Listing supplies/shopping
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
           .col-xs-8.col-md-6
             .task_list
               h3 Un-assigned tasks:
