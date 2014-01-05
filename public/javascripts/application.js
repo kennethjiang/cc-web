@@ -1,4 +1,6 @@
 $(function  () {
+  var TaskObject = Parse.Object.extend("Task");
+  var query = new Parse.Query(TaskObject);
   var adjustment
   
   $("ol.simple_with_animation").sortable({
@@ -7,14 +9,29 @@ $(function  () {
     //pullPlaceholder: false,
     // animation on drop
     onDrop: function  (item, targetContainer, _super) {
-      var clonedItem = $('<li/>').css({height: 0})
-      item.before(clonedItem)
-      clonedItem.animate({'height': item.height()})
+      var clonedItem = $('<li/>').css({height: 0});
+      item.before(clonedItem);
+      clonedItem.animate({'height': item.height()});
       
       item.animate(clonedItem.position(), function  () {
         clonedItem.detach()
         _super(item)
-      })
+      });
+
+      _.each($('ol.assigned_task_group li'), function(i) {
+        query.get($(i).data('task-id')).then(function(task) {
+          task.set('position', $(i).index());
+          task.set('assigned', 'T');
+          saveTask(task);
+        });
+      });
+      _.each($('ol.unassigned_task_group li'), function(i) {
+        query.get($(i).data('task-id')).then(function(task) {
+          task.set('position', $(i).index());
+          task.set('assigned', 'F');
+          saveTask(task);
+        });
+      });
     },
   
     // set item relative to cursor position
@@ -84,12 +101,16 @@ $(function  () {
     .removeAttr('checked')
     .removeAttr('selected');
 
-    var TaskObject = Parse.Object.extend("Task");
     var task = new TaskObject();
-    task.save({desc: taskDesc});
-    var clone = $($('ol.task_group_in li')[0]).clone();
-    clone.find('span').text(taskDesc);
-    $('ol.task_group_in').prepend(clone);
+    task.save({desc: taskDesc, assigned: 'T', isQuestion: 'F'}, {
+          success: function(task) {
+            console.log('new task: ' + task.id);
+            renderTask(task);
+          },
+          error: function(task, error) {
+            alert('Failed to create task: ' + task.id + ', with error code: ' + error.description);
+          }
+    });
   });
 
   $('button#new-task-cancel').click( function() {
@@ -113,6 +134,7 @@ $(function  () {
     var taskEntry = $(_.template( $("#task_item_template").html(), {task: task}));
 
     taskEntry.find('.editable-title').editable();
+    taskEntry.find('.editable-title').on('save', updateTaskDesc);
     taskEntry.find(".attach-pic").click(function(){
         $($(this).closest("li").find("form")).removeClass("hidden");
     });
@@ -120,53 +142,74 @@ $(function  () {
         readURL(this);
     });
 
-    $('ol.task_group_in').append(taskEntry);
+    if( task.get('assigned') === 'T' ) {
+      $('ol.assigned_task_group').prepend(taskEntry);
+    }
+    else {
+      $('ol.unassigned_task_group').prepend(taskEntry);
+    }
   };
 
-    var TaskObject = Parse.Object.extend("Task");
-    var query = new Parse.Query(TaskObject);
-    query.equalTo('isQuestion', 'F');
-    query.ascending('position').find().then(function(tasks) {
+    query.equalTo('isQuestion', 'F').descending('position').find().then(function(tasks) {
         _.each(tasks, renderTask);
       });
 
-  preCreateTasks = function() {
-    var TaskObject = Parse.Object.extend("Task");
-    var query = new Parse.Query(TaskObject);
+  function updateTaskDesc(e, params) {
+    query.get($($(this).closest("li")).data('task-id')).then(function(task) {
+        task.set('desc', params.newValue);
+        saveTask(task);
+        });
+  };
+
+  saveTask = function(task) {
+        task.save( null, {
+          success: function(task) {
+            console.log('Task saved for: ' + task.id);
+          },
+          error: function(task, error) {
+            alert('Failed to save task: ' + task.id + ', with error code: ' + error.description);
+          }
+       });
+    };
+
+  clearTasks = function() {
     query.find().then(function(tasks) {
         _.each(tasks, function(task) {
           task.destroy();
          }); 
       });
+    };
+      
+  predefinedTasks = function() {
     var predefined = [
-    {desc: "Complete/partial bath", isQuestion: "F", position: 1},
-    {desc: "Dress/undress", isQuestion: "F", position: 2},
-    {desc: "Assist with toileting", isQuestion: "F", position: 3},
-    {desc: "Transferring", isQuestion: "F", position: 4},
-    {desc: "Personal grooming", isQuestion: "F", position: 5},
-    {desc: "Assist with eating/feeding", isQuestion: "F", position: 6},
-    {desc: "Ambulation", isQuestion: "F", position: 7},
-    {desc: "Turn/Change position", isQuestion: "F", position: 8},
-    {desc: "Vital Signs", isQuestion: "F", position: 9},
-    {desc: "Assist with self-administration medication", isQuestion: "F", position: 10},
-    {desc: "Bowel/bladder", isQuestion: "F", position: 11},
-    {desc: "Wound care", isQuestion: "F", position: 12},
-    {desc: "ROM", isQuestion: "F", position: 13},
-    {desc: "Supervision", isQuestion: "F", position: 14},
-    {desc: "Prepare breakfast", isQuestion: "F", position: 15},
-    {desc: "Prepare lunch", isQuestion: "F", position: 16},
-    {desc: "Prepare dinner", isQuestion: "F", position: 17},
-    {desc: "Clean kitchen/wash dishes", isQuestion: "F", position: 18},
-    {desc: "Make/change bed linen", isQuestion: "F", position: 19},
-    {desc: "Clean areas used by individual", isQuestion: "F", position: 20},
-    {desc: "Listing supplies/shopping", isQuestion: "F", position: 21},
-    {desc: "Individual's laundry", isQuestion: "F", position: 22},
-    {desc: "Medical appointments", isQuestion: "F", position: 23},
-    {desc: "Work/school/social", isQuestion: "F", position: 24},
-    {desc: "Did you observe any change in the individual's physical condition?", isQuestion: "T", position: 25},
-    {desc: "Did you observe any change in the individual's emotional condition?", isQuestion: "T", position: 26},
-    {desc: "Was there any change in the individual's regular daily activities?", isQuestion: "T", position: 27},
-    {desc: "Do you have an observation about the individual's response to services rendered?", isQuestion: "T", position: 28},
+    {desc: "Complete/partial bath", assigned: "T", isQuestion: "F", position: 1},
+    {desc: "Dress/undress", assigned: "T", isQuestion: "F", position: 2},
+    {desc: "Assist with toileting", assigned: "T", isQuestion: "F", position: 3},
+    {desc: "Transferring", assigned: "T", isQuestion: "F", position: 4},
+    {desc: "Personal grooming", assigned: "T", isQuestion: "F", position: 5},
+    {desc: "Assist with eating/feeding", assigned: "T", isQuestion: "F", position: 6},
+    {desc: "Ambulation", assigned: "T", isQuestion: "F", position: 7},
+    {desc: "Turn/Change position", assigned: "T", isQuestion: "F", position: 8},
+    {desc: "Vital Signs", assigned: "T", isQuestion: "F", position: 9},
+    {desc: "Assist with self-administration medication", assigned: "T", isQuestion: "F", position: 10},
+    {desc: "Bowel/bladder", assigned: "T", isQuestion: "F", position: 11},
+    {desc: "Wound care", assigned: "T", isQuestion: "F", position: 12},
+    {desc: "ROM", assigned: "T", isQuestion: "F", position: 13},
+    {desc: "Supervision", assigned: "T", isQuestion: "F", position: 14},
+    {desc: "Prepare breakfast", assigned: "T", isQuestion: "F", position: 15},
+    {desc: "Prepare lunch", assigned: "T", isQuestion: "F", position: 16},
+    {desc: "Prepare dinner", assigned: "T", isQuestion: "F", position: 17},
+    {desc: "Clean kitchen/wash dishes", assigned: "T", isQuestion: "F", position: 18},
+    {desc: "Make/change bed linen", assigned: "T", isQuestion: "F", position: 19},
+    {desc: "Clean areas used by individual", assigned: "T", isQuestion: "F", position: 20},
+    {desc: "Listing supplies/shopping", assigned: "T", isQuestion: "F", position: 21},
+    {desc: "Individual's laundry", assigned: "F", isQuestion: "F", position: 22},
+    {desc: "Medical appointments", assigned: "F", isQuestion: "F", position: 23},
+    {desc: "Work/school/social", assigned: "F", isQuestion: "F", position: 24},
+    {desc: "Did you observe any change in the individual's physical condition?", assigned: "T", isQuestion: "T", position: 25},
+    {desc: "Did you observe any change in the individual's emotional condition?", assigned: "T", isQuestion: "T", position: 26},
+    {desc: "Was there any change in the individual's regular daily activities?", assigned: "T", isQuestion: "T", position: 27},
+    {desc: "Do you have an observation about the individual's response to services rendered?", assigned: "T", isQuestion: "T", position: 28},
     ];
 
     _.each (predefined, function(taskitem) {

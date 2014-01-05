@@ -9,6 +9,7 @@ block content
       <input type="file" class="imgInp">
       </form>
       </li>
+
   .container
     .masthead
       h3.text-muted Welcome to Clear Care
@@ -49,35 +50,11 @@ block content
             .task_list
               h4 Drag and drop to re-arrange tasks:
               
-              ol.simple_with_animation.vertical.task_group_in
+              ol.simple_with_animation.vertical.assigned_task_group
           .col-xs-8.col-md-6
             .task_list
-              h3 Un-assigned tasks:
-              ol.simple_with_animation.vertical
-                li
-                  i.icon-move
-                  span.editable-title Individual's laundry
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Medical appointments
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
-                li
-                  i.icon-move
-                  span.editable-title Work/school/social
-                  button.attach-pic.btn.btn-primary.btn-xs(type='button') Attach picture
-                  div.pic-preview.hidden
-                    img(src='#', alt='your image', style='width: 50px')
-                  form.hidden(runat='server')
-                    input.imgInp(type='file')
+              h4 Un-assigned tasks:
+              ol.simple_with_animation.vertical.unassigned_task_group
 
     //
        Site footer 
