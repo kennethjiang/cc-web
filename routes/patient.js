@@ -7,6 +7,10 @@ exports.list = function(req, res){
   res.render('patients', { title: 'Patients' });
 };
 
+exports.show2 = function(req, res){
+  res.render('show_patient2');
+};
+
 exports.show = function(req, res){
   var tasks = [
   {task: "Complete/partial bath", time: "Dec 27 10:29", status: "Confirmed", comments: ""},

@@ -1,0 +1,73 @@
+extends layout
+
+block content
+  script#log_entry_template(type='text/template')
+      <tr>
+      <td><%= moment(log.createdAt).format('MMM Do YYYY, h:mm:ss a') %></td>
+      <td><%= log.get('desc') %></td>
+      <td class="<%= (log.get('status') === "No" || log.get('status') === "Confirmed")? "positive" : "negative" %>"><%= log.get('status') %></td>
+      <td><%= log.get('comments') %></td>
+      </tr>
+
+  .container
+    .masthead
+      h3.text-muted Welcome to Clear Care
+      ul.nav.nav-justified
+        li.active
+          a(href='/') Admin
+  .container
+    .masthead
+      h3.text-muted Welcome to Clear Care
+      ul.nav.nav-justified
+        li
+          a(href='/') Admin
+        li.active
+          a(href='/patients') Dashboard
+        li
+          a(href='#') About
+        li
+          a(href='#') Contact
+
+
+     .content
+       br
+       a.profile-photo(href='#')
+         img(height=42 width=42 src='/images/profile.jpg')
+       strong John Doe
+       hr
+     table.table.table-striped
+      thead
+        tr
+          th Time
+          th Task
+          th Status
+          th Comments
+      tbody
+        tr
+          td Dec 27 10:20
+          td
+            strong Checking in
+          td &nbsp;
+          td &nbsp;
+        tr
+          td Dec 27 16:15
+          td
+            strong Checking out 
+          td &nbsp;
+          td &nbsp;
+    hr
+    h3 Duration: 5 hours, 55 mins
+
+    //
+       Site footer 
+    .footer
+      p © Company 2013
+  //
+     /container 
+  //
+     Bootstrap core JavaScript
+        ================================================== 
+  //
+     Placed at the end of the document so the pages load faster 
+    script(src='/javascripts/patients.js')
+

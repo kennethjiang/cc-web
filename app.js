@@ -38,6 +38,7 @@ app.get('/', routes.index);
 app.get('/users/:id', user.show);
 app.get('/patients', patient.list);
 app.get('/patients/:id', patient.show);
+app.get('/patients2/:id', patient.show2);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

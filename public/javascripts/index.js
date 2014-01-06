@@ -1,6 +1,6 @@
 $(function  () {
   var TaskObject = Parse.Object.extend("Task");
-  var query = new Parse.Query(TaskObject);
+  var taskQuery = new Parse.Query(TaskObject);
   var adjustment
   
   $("ol.simple_with_animation").sortable({
@@ -19,14 +19,14 @@ $(function  () {
       });
 
       _.each($('ol.assigned_task_group li'), function(i) {
-        query.get($(i).data('task-id')).then(function(task) {
+        taskQuery.get($(i).data('task-id')).then(function(task) {
           task.set('position', $(i).index());
           task.set('assigned', 'T');
           saveTask(task);
         });
       });
       _.each($('ol.unassigned_task_group li'), function(i) {
-        query.get($(i).data('task-id')).then(function(task) {
+        taskQuery.get($(i).data('task-id')).then(function(task) {
           task.set('position', $(i).index());
           task.set('assigned', 'F');
           saveTask(task);
@@ -58,7 +58,7 @@ $(function  () {
   function readURL(input) {
   
       if (input.files && input.files[0]) {
-          query.get($(input).closest("li").data('task-id')).then( function(task) {
+          taskQuery.get($(input).closest("li").data('task-id')).then( function(task) {
             var parseFile = new Parse.File(input.files[0].name, input.files[0]);
             parseFile.save().then( function() {
               task.set('pic', parseFile);
@@ -169,12 +169,12 @@ $(function  () {
     }
   };
 
-  query.descending('position').find().then(function(tasks) {
+  taskQuery.descending('position').find().then(function(tasks) {
     _.each(tasks, renderTask);
   });
 
   function updateTaskDesc(e, params) {
-    query.get($($(this).closest("li")).data('task-id')).then(function(task) {
+    taskQuery.get($($(this).closest("li")).data('task-id')).then(function(task) {
         task.set('desc', params.newValue);
         saveTask(task);
         });
@@ -192,7 +192,7 @@ $(function  () {
   };
 
   clearTasks = function() {
-    query.find().then(function(tasks) {
+    taskQuery.find().then(function(tasks) {
         _.each(tasks, function(task) {
           task.destroy();
          }); 
