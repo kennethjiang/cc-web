@@ -33,17 +33,22 @@ block content
           hr
         #new-task-div.row
           .col-xs-8.col-md-6
-            a#new-task.btn.btn-primary(type='button', href='#') Add Custom Task
+            a#new-task.btn.btn-primary(type='button') Add Custom Task
             p
             #popover_content_wrapper
               form#new-task-form.form-inline(role='form')
                   .form-group
-                    input.form-control.input-sm(type='text', style='width: 420px;')
+                    input.form-control.input-sm(type='text', style='width: 430px;')
                   .form-group
                     button#new-task-submit.btn.btn-primary.btn-sm(type='button')
                       i.glyphicon.glyphicon-ok
                     button#new-task-cancel.btn.btn-default.btn-sm(type='button')
                       i.glyphicon.glyphicon-remove
+                  .checkbox(style="padding-top: 5px;padding-bottom: 10px;")
+                      label
+                          input.is_question(type='checkbox')
+                          | &nbsp;Clinical
+
           
          .row
           .col-xs-8.col-md-6

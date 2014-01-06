@@ -58,6 +58,14 @@ $(function  () {
   function readURL(input) {
   
       if (input.files && input.files[0]) {
+          query.get($(input).closest("li").data('task-id')).then( function(task) {
+            var parseFile = new Parse.File(input.files[0].name, input.files[0]);
+            parseFile.save().then( function() {
+              task.set('pic', parseFile);
+              saveTask(task);
+            });
+          });
+
           var reader = new FileReader();
           input_node = input;
   
@@ -92,7 +100,11 @@ $(function  () {
   });
 
   $('button#new-task-submit').click( function() {
-    var taskDesc = $(':input','.form-inline').not(':button, :submit, :reset, :hidden').val(); 
+    var taskDesc = $(this).closest('form').find('input[type="text"]').val();
+    var isQ = 'F';
+    if( $(this).closest('form').find('input[type="checkbox"]').is(':checked') ) {
+      isQ = 'T';
+    }
 
     $('#popover_content_wrapper').hide(350);
     $(':input','.form-inline')
@@ -102,7 +114,7 @@ $(function  () {
     .removeAttr('selected');
 
     var task = new TaskObject();
-    task.save({desc: taskDesc, assigned: 'T', isQuestion: 'F'}, {
+    task.save({desc: taskDesc, assigned: 'T', isQuestion: isQ}, {
           success: function(task) {
             console.log('new task: ' + task.id);
             renderTask(task);
@@ -141,6 +153,13 @@ $(function  () {
     taskEntry.find(".imgInp").change(function(){
         readURL(this);
     });
+    if( task.get('pic') ) {
+      taskEntry.find(".pic-preview img").attr('src', task.get('pic').url());
+      taskEntry.find(".pic-preview").removeClass("hidden");
+    }
+    if( task.get('isQuestion') === 'T' ) {
+      taskEntry.addClass("bluebg");
+    }
 
     if( task.get('assigned') === 'T' ) {
       $('ol.assigned_task_group').prepend(taskEntry);
@@ -150,9 +169,9 @@ $(function  () {
     }
   };
 
-    query.equalTo('isQuestion', 'F').descending('position').find().then(function(tasks) {
-        _.each(tasks, renderTask);
-      });
+  query.descending('position').find().then(function(tasks) {
+    _.each(tasks, renderTask);
+  });
 
   function updateTaskDesc(e, params) {
     query.get($($(this).closest("li")).data('task-id')).then(function(task) {
@@ -162,15 +181,15 @@ $(function  () {
   };
 
   saveTask = function(task) {
-        task.save( null, {
-          success: function(task) {
-            console.log('Task saved for: ' + task.id);
-          },
-          error: function(task, error) {
-            alert('Failed to save task: ' + task.id + ', with error code: ' + error.description);
-          }
-       });
-    };
+    task.save( null, {
+      success: function(task) {
+        console.log('Task saved for: ' + task.id);
+      },
+      error: function(task, error) {
+        console.log('ERROR: Failed to save task: ' + task.id + ', with error code: ' + error.description);
+      }
+    });
+  };
 
   clearTasks = function() {
     query.find().then(function(tasks) {

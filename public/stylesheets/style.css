@@ -153,6 +153,8 @@ ol.vertical {
     border: 1px solid #cccccc;
     color: #0088cc;
     background: #eeeeee; }
+  ol.vertical li.bluebg {
+    background: #ddddff; }
   /* line 19, jquery-sortable.css.sass */
   ol.vertical li.placeholder {
     position: relative;
