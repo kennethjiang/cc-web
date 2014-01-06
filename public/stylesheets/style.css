@@ -196,7 +196,8 @@ ol {
   height: 14px;
   *margin-right: .3em;
   line-height: 14px;
-  vertical-align: text-top;
+  margin-top: 4px;
+  vertical-align: top;
   background-image: url("../images/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat; }
@@ -338,8 +339,12 @@ li button.attach-pic {
 }
 
 li span.editable-title {
+  display: inline-block;
   margin-left: 10px;
+  max-width: 380px !important;
+  width: auto;
 }
+
 .hidden { display: none; }
 
 #new-task-div .popover {
