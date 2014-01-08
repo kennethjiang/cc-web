@@ -11,6 +11,7 @@ $(function  () {
 
   logQuery.ascending('createdAt').find().then(function(logs) {
     _.each(logs, renderLog);
+    $('span.duration').text(moment.duration(logs[logs.length-1].createdAt - logs[0].createdAt).humanize());
   });
 
 })
