@@ -44,3 +44,7 @@ exports.show = function(req, res){
   ];
   res.render('show_patient', { tasks: tasks });
 };
+
+exports.reset= function(req, res){
+  res.render('patient_reset');
+};
