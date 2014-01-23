@@ -3,7 +3,7 @@ extends layout
 block content
   script#log_entry_template(type='text/template')
       <tr>
-      <td><%= moment(log.createdAt).format('MMM Do YYYY, h:mm:ss a') %></td>
+      <td><%= moment(log.createdAt).format('MMM Do, h:mm a') %></td>
       <td><%= log.get('desc') %></td>
       <td class="<%= (log.get('status') === "No" || log.get('status') === "Confirmed")? "positive" : "negative" %>"><%= log.get('status') %></td>
       <td><%= log.get('comments') %></td>
@@ -40,18 +40,6 @@ block content
           th Status
           th Comments
       tbody
-        tr
-          td Dec 27 10:20
-          td
-            strong Checking in
-          td &nbsp;
-          td &nbsp;
-        tr
-          td Dec 27 16:15
-          td
-            strong Checking out 
-          td &nbsp;
-          td &nbsp;
     hr
     h3 Duration:&nbsp;
       span.duration 5 hours, 55 mins
@@ -67,5 +55,5 @@ block content
         ================================================== 
   //
      Placed at the end of the document so the pages load faster 
-    script(src='/javascripts/patients.js')
+    script(src='/javascripts/show_patient.js')
 
