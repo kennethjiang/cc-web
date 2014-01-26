@@ -37,6 +37,7 @@ app.get('/', routes.index);
 //app.get('/users', user.list);
 app.get('/users/:id', user.show);
 app.get('/patient_reset', patient.reset);
+app.get('/patients', patient.list);
 app.get('/patients/:id', patient.show);
 app.get('/patients2/:id', patient.show2);
 
