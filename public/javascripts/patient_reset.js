@@ -12,6 +12,7 @@ $(function  () {
         _.each(logs, function(log) {
           log.destroy();
          }); 
+         alert('All logs are cleared');
       });
     };
       
