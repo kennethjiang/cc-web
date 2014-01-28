@@ -2,7 +2,7 @@ extends layout
 
 block content
   script#log_entry_template(type='text/template')
-      <tr>
+      <tr <%= (log.get('status') === "Yes" || log.get('status') === "No")? 'class="clinical"' : '' %> >
       <td><%= moment(log.createdAt).format('MMM Do, h:mm a') %></td>
       <td><%= log.get('desc') %></td>
       <td class="<%= (log.get('status') === "No" || log.get('status') === "Confirmed")? "positive" : "negative" %>"><%= log.get('status') %></td>

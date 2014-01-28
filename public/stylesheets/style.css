@@ -374,3 +374,6 @@ li span.editable-title {
   min-height: 50px;
   padding: 13px 10px; }
 
+.table tbody tr.clinical > td {
+  background-color: #ddddff !important;
+}
